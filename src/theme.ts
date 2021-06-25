@@ -1,27 +1,39 @@
-import { createMuiTheme } from "@material-ui/core";
+import { createMuiTheme } from '@material-ui/core'
 
 const theme = createMuiTheme({
   typography: {
+    fontFamily: 'acumin-pro, sans-serif',
     button: {
-      textTransform: "none",
+      textTransform: 'none',
+    },
+    h1: {
+      fontSize: '1.25rem',
     },
   },
-  palette: {},
+  palette: {
+    primary: {
+      main: '#4B4B4B',
+      contrastText: 'white',
+    },
+    text: {
+      primary: '#3F4444',
+    },
+  },
   overrides: {
     MuiButton: {
       root: {
         minWidth: 0,
-        boxShadow: "none",
+        boxShadow: 'none',
       },
     },
   },
-});
+})
 
 theme.overrides.MuiButton.containedPrimary = {
-  boxShadow: "none",
-  "&:hover": {
-    boxShadow: "none",
+  boxShadow: 'none',
+  '&:hover': {
+    boxShadow: 'none',
   },
-};
+}
 
-export default theme;
+export default theme
