@@ -19,6 +19,7 @@ const styles = ({
     root: {
       color: primary,
       fontSize: '1.125rem',
+      textTransform: 'uppercase',
     },
   })
 }
