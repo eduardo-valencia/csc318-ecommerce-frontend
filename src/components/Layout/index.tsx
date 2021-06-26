@@ -2,6 +2,8 @@ import React from 'react'
 import { withStyles, WithStyles, createStyles } from '@material-ui/core'
 import { Helmet } from 'react-helmet'
 
+import BottomNav from './BottomNav'
+
 const styles = () => {
   return createStyles({})
 }
@@ -19,6 +21,7 @@ const Layout = ({ classes, children, nav }: Props) => {
       </Helmet>
       {nav}
       <main>{children}</main>
+      <BottomNav />
     </>
   )
 }
