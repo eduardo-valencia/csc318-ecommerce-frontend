@@ -13,17 +13,20 @@ import { getProductLink } from '../../../utils/links'
 
 const styles = ({
   palette: {
-    text: { secondary },
+    text: { secondary, primary },
   },
 }: Theme) => {
+  const paddingY: string = '0.3125rem'
   return createStyles({
     root: {
-      padding: '0.3125rem 0.5rem',
-      boxShadow: '#00000029 0 0.1875rem 0.375rem 0.375rem',
+      padding: `${paddingY} 0.5rem `,
+      boxShadow: '#00000029 0 0.1875rem 0.375rem 0.1rem',
       textDecoration: 'none',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
+      backgroundColor: 'white',
+      borderRadius: '0.5rem',
     },
     title: {
       fontSize: '0.875rem',
@@ -43,6 +46,9 @@ const styles = ({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      flexDirection: 'column',
+      color: primary,
+      flexGrow: 1,
     },
     image: {
       width: '10.3125rem',
@@ -59,8 +65,10 @@ const FeaturedProduct = ({
   name,
   category: { name: categoryName },
   price = 300,
+  thumbnail,
 }: Props) => {
   const href: string = getProductLink(slug)
+  const image = getImage(thumbnail.localFile)
   return (
     <Link className={classes.root} to={href}>
       <div className={classes.body}>
@@ -70,6 +78,11 @@ const FeaturedProduct = ({
         <Typography className={classes.category}>{categoryName}</Typography>
         <Typography className={classes.price}>{price}</Typography>
       </div>
+      <GatsbyImage
+        image={image}
+        alt={thumbnail.alternativeText}
+        className={classes.image}
+      />
     </Link>
   )
 }

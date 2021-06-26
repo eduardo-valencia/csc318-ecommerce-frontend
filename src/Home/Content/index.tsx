@@ -5,11 +5,12 @@ import {
   WithStyles,
   createStyles,
 } from '@material-ui/core'
-import { CategoryContext } from '../../contexts/CategoryContext'
 import { useStaticQuery, graphql } from 'gatsby'
 
+import { CategoryContext } from '../../contexts/CategoryContext'
 import Category from '../../api/types/Category'
 import Product from '../../api/types/Product'
+import FeaturedProducts from './FeaturedProducts'
 
 const styles = () => {
   return createStyles({})
@@ -28,6 +29,7 @@ const Content = ({ classes }: Props) => {
       allStrapiCategories {
         nodes {
           slug
+          name
         }
       }
       allStrapiProducts {
@@ -62,7 +64,11 @@ const Content = ({ classes }: Props) => {
 
   console.log('productsForCategory', productsForCategory)
 
-  return <Container>Hello</Container>
+  return (
+    <section>
+      <FeaturedProducts products={productsForCategory} />
+    </section>
+  )
 }
 
 export default withStyles(styles)(Content)

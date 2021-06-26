@@ -1,14 +1,8 @@
-interface ChildImageSharp {
-  gatsbyImageData: any
-}
-
-interface LocalFile {
-  childImageSharp: ChildImageSharp
-}
+import { FileNode } from 'gatsby-plugin-image/dist/src/components/hooks'
 
 interface Thumbnail {
   alternativeText: string
-  localFile: LocalFile
+  localFile: FileNode
 }
 
 export default Thumbnail
