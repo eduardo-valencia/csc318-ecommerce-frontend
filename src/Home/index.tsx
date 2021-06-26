@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core'
 
 import Layout from '../components/Layout'
-import Nav from './Nav'
+import Nav from './Nav/index'
 
 const styles = () => {
   return createStyles({

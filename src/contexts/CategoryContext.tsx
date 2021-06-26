@@ -1,7 +1,6 @@
 import React, { createContext, useState, Dispatch } from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
 
-export type SelectedCategory = string
+export type SelectedCategory = number
 type SetCategory = Dispatch<React.SetStateAction<SelectedCategory>>
 
 export interface ContextValue {
@@ -16,21 +15,7 @@ interface Props {
 }
 
 const CategoryContextProvider = ({ children }: Props) => {
-  const {
-    allStrapiCategories: {
-      nodes: [{ slug: firstCategorySlug }],
-    },
-  } = useStaticQuery(graphql`
-    query Categories {
-      allStrapiCategories {
-        nodes {
-          slug
-        }
-      }
-    }
-  `)
-
-  const [category, setCategory] = useState<SelectedCategory>(firstCategorySlug)
+  const [category, setCategory] = useState<SelectedCategory>(0)
 
   return (
     <CategoryContext.Provider value={{ category, setCategory }}>

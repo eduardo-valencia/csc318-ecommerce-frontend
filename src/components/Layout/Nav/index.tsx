@@ -17,16 +17,18 @@ const styles = ({
   const minHeight: number = 0
   return createStyles({
     root: {
-      paddingTop: '1.8125rem',
-      paddingBottom: '0.5625rem',
-      backgroundColor: main,
-      color: contrastText,
       minHeight,
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
     },
     toolbar: {
+      color: contrastText,
+      paddingTop: '1.8125rem',
+      paddingBottom: '0.5625rem',
       minHeight,
       display: 'flex',
       justifyContent: 'center',
+      backgroundColor: main,
     },
   })
 }
@@ -43,8 +45,8 @@ const Nav = ({ classes, title, children }: Props) => {
         <Typography variant='h1' align='center'>
           {title}
         </Typography>
-        {children}
       </Toolbar>
+      {children}
     </AppBar>
   )
 }
