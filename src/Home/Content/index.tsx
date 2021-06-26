@@ -11,6 +11,7 @@ import { CategoryContext } from '../../contexts/CategoryContext'
 import Category from '../../api/types/Category'
 import Product from '../../api/types/Product'
 import FeaturedProducts from './FeaturedProducts'
+import Products from './Products'
 
 const styles = () => {
   return createStyles({})
@@ -38,6 +39,7 @@ const Content = ({ classes }: Props) => {
             slug
           }
           name
+          price
           thumbnail {
             alternativeText
             localFile {
@@ -62,11 +64,10 @@ const Content = ({ classes }: Props) => {
     getIfProductHasSelectedCategory
   )
 
-  console.log('productsForCategory', productsForCategory)
-
   return (
     <section>
       <FeaturedProducts products={productsForCategory} />
+      <Products products={productsForCategory} />
     </section>
   )
 }
