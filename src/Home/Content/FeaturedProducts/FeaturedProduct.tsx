@@ -8,8 +8,10 @@ import {
 } from '@material-ui/core'
 import { Link } from 'gatsby'
 import { getImage, GatsbyImage } from 'gatsby-plugin-image'
+
 import Product from '../../../api/types/Product'
 import { getProductLink } from '../../../utils/links'
+import { formatPrice } from '../../../utils/price'
 
 const styles = ({
   palette: {
@@ -69,6 +71,7 @@ const FeaturedProduct = ({
 }: Props) => {
   const href: string = getProductLink(slug)
   const image = getImage(thumbnail.localFile)
+  const formattedPrice: string = formatPrice(price)
   return (
     <Link className={classes.root} to={href}>
       <div className={classes.body}>
@@ -76,7 +79,7 @@ const FeaturedProduct = ({
           {name}
         </Typography>
         <Typography className={classes.category}>{categoryName}</Typography>
-        <Typography className={classes.price}>{price}</Typography>
+        <Typography className={classes.price}>{formattedPrice}</Typography>
       </div>
       <GatsbyImage
         image={image}
