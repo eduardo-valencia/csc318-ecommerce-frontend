@@ -3,9 +3,14 @@ import { withStyles, WithStyles, createStyles } from '@material-ui/core'
 import { Helmet } from 'react-helmet'
 
 import BottomNav from './BottomNav'
+import { bottomNavHeight } from '../../constants/dimensions'
 
 const styles = () => {
-  return createStyles({})
+  return createStyles({
+    main: {
+      paddingBottom: bottomNavHeight,
+    },
+  })
 }
 
 interface Props extends WithStyles<typeof styles> {
@@ -20,7 +25,7 @@ const Layout = ({ classes, children, nav }: Props) => {
         <link rel='stylesheet' href='https://use.typekit.net/mtx1big.css' />
       </Helmet>
       {nav}
-      <main>{children}</main>
+      <main className={classes.main}>{children}</main>
       <BottomNav />
     </>
   )
