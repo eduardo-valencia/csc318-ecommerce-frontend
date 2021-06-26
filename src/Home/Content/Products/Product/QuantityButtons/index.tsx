@@ -26,6 +26,9 @@ const styles = ({
       display: 'flex',
       flexDirection: 'column',
       padding: '1.0625rem 0.875rem',
+      position: 'absolute',
+      bottom: 0,
+      right: 0,
     },
     quantity: {
       fontSize: '1.25rem',

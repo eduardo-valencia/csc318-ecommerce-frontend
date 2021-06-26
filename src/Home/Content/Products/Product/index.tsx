@@ -5,13 +5,13 @@ import {
   createStyles,
   Typography,
 } from '@material-ui/core'
-import { Link } from 'gatsby'
 
 import Product from '../../../../api/types/Product'
-import { getProductLink } from '../../../../utils/links'
 import { formatPrice } from '../../../../utils/price'
 import QuantityButtons from './QuantityButtons'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import ProductLink from './ProductLink'
+import { quantityButtonWidth } from '../../../../constants/dimensions'
 
 const styles = () => {
   const paddingX: string = '0.875rem'
@@ -20,13 +20,12 @@ const styles = () => {
     root: {
       listStyle: 'none',
       width: 'calc(50% - 0.625rem / 2)',
-    },
-    link: {
-      boxShadow: '#00000029 0 0.1875rem 0.375rem',
-      borderRadius,
-      textDecoration: 'none',
       position: 'relative',
       marginBottom: '0.625rem',
+    },
+    content: {
+      boxShadow: '#00000029 0 0.1875rem 0.375rem',
+      borderRadius,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
@@ -53,6 +52,7 @@ const styles = () => {
       color: '#304A4E',
       marginRight: '0.25rem',
       marginBottom: '0.6875rem',
+      width: `calc(100% - ${quantityButtonWidth})`,
     },
     image: {
       borderRadius,
@@ -69,25 +69,27 @@ const styles = () => {
 interface Props extends WithStyles<typeof styles>, Product {}
 
 const ProductItem = ({ classes, price, name, slug, thumbnail }: Props) => {
-  const href: string = getProductLink(slug)
   const formattedPrice: string = formatPrice(price)
   const image = getImage(thumbnail.localFile)
+
   return (
     <li className={classes.root}>
-      <Link to={href} className={classes.link}>
-        <GatsbyImage
-          image={image}
-          alt={thumbnail.alternativeText}
-          className={classes.image}
-        />
-        <div className={classes.top}>
-          <Typography className={classes.price}>{formattedPrice}</Typography>
+      <ProductLink slug={slug}>
+        <div className={classes.content}>
+          <GatsbyImage
+            image={image}
+            alt={thumbnail.alternativeText}
+            className={classes.image}
+          />
+          <div className={classes.top}>
+            <Typography className={classes.price}>{formattedPrice}</Typography>
+          </div>
+          <div className={classes.bottom}>
+            <Typography className={classes.name}>{name}</Typography>
+          </div>
         </div>
-        <div className={classes.bottom}>
-          <Typography className={classes.name}>{name}</Typography>
-          <QuantityButtons slug={slug} />
-        </div>
-      </Link>
+      </ProductLink>
+      <QuantityButtons slug={slug} />
     </li>
   )
 }

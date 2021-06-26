@@ -5,6 +5,7 @@ import {
   WithStyles,
   createStyles,
   IconButton,
+  IconButtonProps,
 } from '@material-ui/core'
 
 const styles = ({
@@ -20,13 +21,19 @@ const styles = ({
   })
 }
 
-interface Props extends WithStyles<typeof styles> {
+interface Props
+  extends WithStyles<typeof styles>,
+    Omit<IconButtonProps, 'classes' | 'children'> {
   incrementAmount: number
   children: React.ReactNode
 }
 
-const IncrementButton = ({ classes, children }: Props) => {
-  return <IconButton classes={classes}>{children}</IconButton>
+const IncrementButton = ({ classes, children, ...other }: Props) => {
+  return (
+    <IconButton classes={classes} {...other}>
+      {children}
+    </IconButton>
+  )
 }
 
 export default withStyles(styles)(IncrementButton)
