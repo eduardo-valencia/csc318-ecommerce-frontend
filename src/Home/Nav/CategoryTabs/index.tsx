@@ -13,6 +13,9 @@ const styles = () => {
       backgroundColor: 'white',
       boxShadow: '0 0.1875rem 0.375rem 0.375rem #00000029',
     },
+    flexContainer: {
+      justifyContent: 'space-between',
+    },
   })
 }
 
