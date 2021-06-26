@@ -33,16 +33,20 @@ const styles = ({
     title: {
       fontSize: '0.875rem',
       marginBottom: '0.4375rem',
+      color: 'black',
+      lineHeight: '1.25rem',
     },
     category: {
       color: secondary,
       marginBottom: '1.0625rem',
       fontSize: '0.75rem',
+      lineHeight: '1rem',
     },
     price: {
       fontSize: '1.125rem',
       fontWeight: 'bold',
       color: '#4D3838',
+      lineHeight: '1.5rem',
     },
     body: {
       display: 'flex',

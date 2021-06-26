@@ -30,13 +30,13 @@ const Content = ({ classes }: Props) => {
       allStrapiCategories {
         nodes {
           slug
-          name
         }
       }
       allStrapiProducts {
         nodes {
           category {
             slug
+            name
           }
           name
           price
