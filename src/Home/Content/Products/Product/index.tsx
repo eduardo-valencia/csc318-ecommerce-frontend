@@ -4,6 +4,7 @@ import {
   WithStyles,
   createStyles,
   Typography,
+  Theme,
 } from '@material-ui/core'
 
 import Product from '../../../../api/types/Product'
@@ -13,15 +14,24 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import ProductLink from './ProductLink'
 import { quantityButtonWidth } from '../../../../constants/dimensions'
 
-const styles = () => {
+const getWidth = (items: number, margin: string = '0.625rem'): string =>
+  `calc(100% / ${items} - ${margin} / ${items})`
+
+const styles = ({ breakpoints: { up } }: Theme) => {
   const paddingX: string = '0.875rem'
   const borderRadius = '0.625rem'
   return createStyles({
     root: {
       listStyle: 'none',
-      width: 'calc(50% - 0.625rem / 2)',
+      width: getWidth(2),
       position: 'relative',
       marginBottom: '0.625rem',
+      [up('sm')]: {
+        width: getWidth(3, '1rem'),
+      },
+      [up('md')]: {
+        width: getWidth(4, '1rem'),
+      },
     },
     content: {
       boxShadow: '#00000029 0 0.1875rem 0.375rem',
