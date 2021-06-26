@@ -3,12 +3,13 @@ import { ThemeProvider } from '@material-ui/core'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 import theme from './theme'
+import CategoryContextProvider from './contexts/CategoryContext'
 
 export const wrapPageElement = ({ element }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {element}
+      <CategoryContextProvider>{element}</CategoryContextProvider>
     </ThemeProvider>
   )
 }
