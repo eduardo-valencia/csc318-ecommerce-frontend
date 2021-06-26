@@ -70,7 +70,7 @@ const FeaturedProduct = ({
   slug,
   name,
   category: { name: categoryName },
-  price = 300,
+  price,
   thumbnail,
 }: Props) => {
   const href: string = getProductLink(slug)
