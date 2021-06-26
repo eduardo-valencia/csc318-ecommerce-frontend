@@ -6,6 +6,7 @@ interface Product<ProductCategory = Category> {
   name: string
   thumbnail: Thumbnail
   category: ProductCategory
+  price?: number
 }
 
 export default Product
