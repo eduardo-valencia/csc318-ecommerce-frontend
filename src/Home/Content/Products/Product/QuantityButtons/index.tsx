@@ -42,12 +42,12 @@ interface Props extends WithStyles<typeof styles> {
   slug: Product['slug']
 }
 
-const QuantityButtons = ({ classes }: Props) => {
+const QuantityButtons = ({ classes, slug }: Props) => {
   return (
     <div className={classes.root}>
-      <AddButton />
+      <AddButton slug={slug} />
       <Typography className={classes.quantity}>01</Typography>
-      <DecrementButton />
+      <DecrementButton slug={slug} />
     </div>
   )
 }

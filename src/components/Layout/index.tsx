@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 import BottomNav from './BottomNav'
 import { bottomNavHeight } from '../../constants/dimensions'
 import CategoryContextProvider from '../../contexts/CategoryContext'
+import CartContextProvider from '../../contexts/CartContext'
 
 const styles = () => {
   return createStyles({
@@ -22,12 +23,14 @@ interface Props extends WithStyles<typeof styles> {
 const Layout = ({ classes, children, nav }: Props) => {
   return (
     <CategoryContextProvider>
-      <Helmet>
-        <link rel='stylesheet' href='https://use.typekit.net/mtx1big.css' />
-      </Helmet>
-      {nav}
-      <main className={classes.main}>{children}</main>
-      <BottomNav />
+      <CartContextProvider>
+        <Helmet>
+          <link rel='stylesheet' href='https://use.typekit.net/mtx1big.css' />
+        </Helmet>
+        {nav}
+        <main className={classes.main}>{children}</main>
+        <BottomNav />
+      </CartContextProvider>
     </CategoryContextProvider>
   )
 }

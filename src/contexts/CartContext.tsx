@@ -22,7 +22,11 @@ export interface ContextValue {
 
 export const CartContext = React.createContext<ContextValue | null>(null)
 
-export default function CartContextProvider() {
+interface Props {
+  children: React.ReactNode
+}
+
+export default function CartContextProvider({ children }: Props) {
   const [cart, setCart] = useState<Cart>([])
 
   const findItem = getItemFinder<CartItem>(cart)
@@ -91,6 +95,8 @@ export default function CartContextProvider() {
         alterQuantity: alterItemQuantity,
         cart,
       }}
-    ></CartContext.Provider>
+    >
+      {children}
+    </CartContext.Provider>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   Theme,
   withStyles,
@@ -7,6 +7,9 @@ import {
   IconButton,
   IconButtonProps,
 } from '@material-ui/core'
+import Product from '../../../../../api/types/Product'
+import { CartContext } from '../../../../../contexts/CartContext'
+import { QuantityButtonProps } from './types'
 
 const styles = ({
   palette: {
@@ -23,14 +26,30 @@ const styles = ({
 
 interface Props
   extends WithStyles<typeof styles>,
-    Omit<IconButtonProps, 'classes' | 'children'> {
+    Omit<IconButtonProps, 'classes' | 'children'>,
+    QuantityButtonProps {
   incrementAmount: number
   children: React.ReactNode
 }
 
-const IncrementButton = ({ classes, children, ...other }: Props) => {
+const IncrementButton = ({
+  slug,
+  classes,
+  children,
+  incrementAmount,
+  ...other
+}: Props) => {
+  const { alterQuantity, addToCart } = useContext(CartContext)
+
+  const handleClick = (): void => {
+    if (incrementAmount >= 1) {
+      return addToCart(slug, incrementAmount)
+    }
+    return alterQuantity(slug, -1)
+  }
+
   return (
-    <IconButton classes={classes} {...other}>
+    <IconButton classes={classes} onClick={handleClick} {...other}>
       {children}
     </IconButton>
   )
