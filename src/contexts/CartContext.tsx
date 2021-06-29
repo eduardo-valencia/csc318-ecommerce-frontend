@@ -12,12 +12,15 @@ export interface CartItem {
 
 export type Cart = CartItem[]
 
+type QuantityModifier = (product: Product['slug'], quantity: Quantity) => void
+
 export interface ContextValue {
   cart: Cart
-  addToCart: (product: Product['slug'], quantity: Quantity) => void
+  addToCart: QuantityModifier
+  decreaseQuantity: QuantityModifier
   removeItem: (product: Product['slug']) => void
   clearCart: () => void
-  alterQuantity: (product: Product['slug'], quantity: Quantity) => void
+  findItem: (product: Product['slug']) => CartItem | undefined
 }
 
 export const CartContext = React.createContext<ContextValue | null>(null)
@@ -77,6 +80,16 @@ export default function CartContextProvider({ children }: Props) {
     return addNewProduct(slug, quantity)
   }
 
+  const decreaseQuantity = (
+    product: Product['slug'],
+    quantity: Quantity = -1
+  ): void => {
+    const existingItem: CartItem | undefined = findItem(product)
+    if (existingItem) {
+      return alterItemQuantity(product, quantity)
+    }
+  }
+
   const removeItem = (slug: Product['slug']): void => {
     const cartWithoutItem: Cart = filterOutItem(slug)
     setCart(cartWithoutItem)
@@ -92,8 +105,9 @@ export default function CartContextProvider({ children }: Props) {
         clearCart,
         removeItem,
         addToCart,
-        alterQuantity: alterItemQuantity,
         cart,
+        findItem,
+        decreaseQuantity,
       }}
     >
       {children}

@@ -7,7 +7,6 @@ import {
   IconButton,
   IconButtonProps,
 } from '@material-ui/core'
-import Product from '../../../../../api/types/Product'
 import { CartContext } from '../../../../../contexts/CartContext'
 import { QuantityButtonProps } from './types'
 
@@ -39,13 +38,13 @@ const IncrementButton = ({
   incrementAmount,
   ...other
 }: Props) => {
-  const { alterQuantity, addToCart } = useContext(CartContext)
+  const { decreaseQuantity, addToCart } = useContext(CartContext)
 
   const handleClick = (): void => {
     if (incrementAmount >= 1) {
       return addToCart(slug, incrementAmount)
     }
-    return alterQuantity(slug, -1)
+    return decreaseQuantity(slug, incrementAmount)
   }
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   withStyles,
   WithStyles,
@@ -10,6 +10,7 @@ import {
 import AddButton from './AddButton'
 import DecrementButton from './DecrementButton'
 import Product from '../../../../../api/types/Product'
+import { CartContext } from '../../../../../contexts/CartContext'
 
 const styles = ({
   palette: {
@@ -43,10 +44,15 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 const QuantityButtons = ({ classes, slug }: Props) => {
+  const { findItem } = useContext(CartContext)!
+
+  const cartItem = findItem(slug)
+  const quantity: number = cartItem ? cartItem.quantity : 0
+
   return (
     <div className={classes.root}>
       <AddButton slug={slug} />
-      <Typography className={classes.quantity}>01</Typography>
+      <Typography className={classes.quantity}>{quantity}</Typography>
       <DecrementButton slug={slug} />
     </div>
   )
