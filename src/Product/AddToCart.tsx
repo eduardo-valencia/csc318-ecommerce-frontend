@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { withStyles, WithStyles, createStyles, Button } from '@material-ui/core'
 import Product from '../api/types/Product'
 import { CartContext } from '../contexts/CartContext'
+import { OpenCartNotification } from './types'
 
 const styles = () => {
   const paddingY: string = '1.0625rem'
@@ -21,13 +22,15 @@ const styles = () => {
 
 interface Props extends WithStyles<typeof styles> {
   slug: Product['slug']
+  openCartNotification: OpenCartNotification
 }
 
-const AddToCart = ({ classes, slug }: Props) => {
+const AddToCart = ({ classes, slug, openCartNotification }: Props) => {
   const { addToCart } = useContext(CartContext)!
 
   const handleClick = (): void => {
     addToCart(slug)
+    openCartNotification()
   }
 
   return (
