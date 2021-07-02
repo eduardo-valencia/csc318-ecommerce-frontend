@@ -46,9 +46,10 @@ interface Props extends WithStyles<typeof styles> {
 const QuantityButtons = ({ classes, slug }: Props) => {
   const { findItem } = useContext(CartContext)!
 
+  const cartItem = findItem(slug)
+  const quantity: number = cartItem ? cartItem.quantity : 0
+
   const getCartQuantity = (): string => {
-    const cartItem = findItem(slug)
-    const quantity: number = cartItem ? cartItem.quantity : 0
     const quantityString: string = quantity.toString()
     if (quantityString.length < 2) {
       return `0${quantityString}`
@@ -61,8 +62,14 @@ const QuantityButtons = ({ classes, slug }: Props) => {
   return (
     <div className={classes.root}>
       <AddButton slug={slug} />
-      <Typography className={classes.quantity}>{formattedQuantity}</Typography>
-      <DecrementButton slug={slug} />
+      {!!quantity && (
+        <>
+          <Typography className={classes.quantity}>
+            {formattedQuantity}
+          </Typography>
+          <DecrementButton slug={slug} />
+        </>
+      )}
     </div>
   )
 }

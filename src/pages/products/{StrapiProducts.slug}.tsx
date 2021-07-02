@@ -5,6 +5,8 @@ export const query = graphql`
     strapiProducts(id: { eq: $id }) {
       name
       description
+      price
+      slug
       thumbnail {
         alternativeText
         localFile {
@@ -12,6 +14,22 @@ export const query = graphql`
             gatsbyImageData
           }
         }
+      }
+      images {
+        alternativeText
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+      sizes {
+        name
+        id
+      }
+      colors {
+        name
+        id
       }
     }
   }

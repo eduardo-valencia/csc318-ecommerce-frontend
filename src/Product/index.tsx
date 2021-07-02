@@ -1,18 +1,37 @@
-import React from 'react'
-import { withStyles, WithStyles, createStyles } from '@material-ui/core'
-import { graphql } from 'gatsby'
+import React, { useState } from 'react'
+import {
+  withStyles,
+  WithStyles,
+  createStyles,
+  Container,
+} from '@material-ui/core'
 import { Helmet } from 'react-helmet'
 
 import Layout from '../components/Layout'
 import Nav from './Nav'
-import Product from '../api/types/Product'
+import { FullProduct } from '../api/types/Product'
+import Images from './Images'
+import Options from './Options'
+import Info from './Info'
+import AddToCart from './AddToCart'
+import Description from './Description'
+import CartNotification from './CartNotification'
+import {
+  CloseCartNotification,
+  OpenCartNotification,
+  ShowCartNotification,
+} from './types'
 
 const styles = () => {
-  return createStyles({})
+  return createStyles({
+    container: {
+      paddingBottom: '1rem',
+    },
+  })
 }
 
 interface Data {
-  strapiProducts: Product
+  strapiProducts: FullProduct
 }
 
 interface Props extends WithStyles<typeof styles> {
@@ -20,31 +39,34 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 const ProductPage = ({ classes, data: { strapiProducts: product } }: Props) => {
+  const [showCartNotification, setShowCartNotification] =
+    useState<ShowCartNotification>(false)
+
+  const openCartNotification: OpenCartNotification = () =>
+    setShowCartNotification(true)
+
+  const closeCartNotification: CloseCartNotification = () =>
+    setShowCartNotification(false)
+
+  const { name, images, sizes, colors, price, slug, description } = product
   return (
-    <Layout nav={<Nav name={product.name} />}>
+    <Layout nav={<Nav name={name} />}>
       <Helmet>
-        <title>{product.name}</title>
+        <title>{name}</title>
       </Helmet>
-      <h1>Hello</h1>
+      <Container className={classes.container}>
+        <Images images={images} />
+        <Options sizes={sizes} colors={colors} />
+        <Info price={price} name={name} />
+        <CartNotification
+          showCartNotification={showCartNotification}
+          closeCartNotification={closeCartNotification}
+        />
+        <AddToCart slug={slug} openCartNotification={openCartNotification} />
+        <Description description={description} />
+      </Container>
     </Layout>
   )
 }
-
-export const query = graphql`
-  query ($id: String) {
-    strapiProducts(id: { eq: $id }) {
-      name
-      description
-      thumbnail {
-        alternativeText
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-      }
-    }
-  }
-`
 
 export default withStyles(styles)(ProductPage)

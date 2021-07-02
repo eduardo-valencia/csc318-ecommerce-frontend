@@ -9,6 +9,10 @@ const theme = createMuiTheme({
     h1: {
       fontSize: '1.25rem',
     },
+    h2: {
+      fontSize: '1.25rem',
+      fontWeight: 'bold',
+    },
   },
   palette: {
     primary: {

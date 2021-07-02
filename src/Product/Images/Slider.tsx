@@ -1,20 +1,16 @@
 import React from 'react'
 import { withStyles, WithStyles, createStyles } from '@material-ui/core'
-import SingleSlider, { BaseProps } from '../../../components/SingleSlider'
+import SingleSlider, {
+  BaseProps as SingleSliderProps,
+} from '../../components/SingleSlider'
 
 const styles = () => {
   return createStyles({
-    root: {
-      '& .slick-slide': {
-        padding: '1rem',
-      },
-    },
+    root: {},
   })
 }
 
-interface Props extends WithStyles<typeof styles>, BaseProps {
-  children: React.ReactNode
-}
+interface Props extends WithStyles<typeof styles>, SingleSliderProps {}
 
 function Slider(props: Props) {
   return <SingleSlider {...props} />
