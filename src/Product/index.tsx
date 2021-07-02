@@ -16,7 +16,11 @@ import Info from './Info'
 import AddToCart from './AddToCart'
 
 const styles = () => {
-  return createStyles({})
+  return createStyles({
+    container: {
+      paddingBottom: '1rem',
+    },
+  })
 }
 
 interface Data {
@@ -34,7 +38,7 @@ const ProductPage = ({ classes, data: { strapiProducts: product } }: Props) => {
       <Helmet>
         <title>{name}</title>
       </Helmet>
-      <Container>
+      <Container className={classes.container}>
         <Images images={images} />
         <Options sizes={sizes} colors={colors} />
         <Info price={price} name={name} />

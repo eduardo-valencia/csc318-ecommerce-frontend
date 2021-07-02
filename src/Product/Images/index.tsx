@@ -10,6 +10,8 @@ const styles = () => {
   return createStyles({
     root: {
       marginBottom: '1.9375rem',
+      transform: 'translateY(-1.0625rem)',
+      zIndex: 1,
     },
   })
 }
