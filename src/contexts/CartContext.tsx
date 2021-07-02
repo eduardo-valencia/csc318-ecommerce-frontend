@@ -12,7 +12,7 @@ export interface CartItem {
 
 export type Cart = CartItem[]
 
-type QuantityModifier = (product: Product['slug'], quantity: Quantity) => void
+type QuantityModifier = (product: Product['slug'], quantity?: Quantity) => void
 
 export interface ContextValue {
   cart: Cart

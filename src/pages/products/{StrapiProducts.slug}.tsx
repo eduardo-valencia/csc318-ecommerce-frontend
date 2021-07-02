@@ -6,6 +6,7 @@ export const query = graphql`
       name
       description
       price
+      slug
       thumbnail {
         alternativeText
         localFile {

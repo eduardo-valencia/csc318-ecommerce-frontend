@@ -13,6 +13,7 @@ import { FullProduct } from '../api/types/Product'
 import Images from './Images'
 import Options from './Options'
 import Info from './Info'
+import AddToCart from './AddToCart'
 
 const styles = () => {
   return createStyles({})
@@ -27,7 +28,7 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 const ProductPage = ({ classes, data: { strapiProducts: product } }: Props) => {
-  const { name, images, sizes, colors, price } = product
+  const { name, images, sizes, colors, price, slug } = product
   return (
     <Layout nav={<Nav name={name} />}>
       <Helmet>
@@ -37,6 +38,7 @@ const ProductPage = ({ classes, data: { strapiProducts: product } }: Props) => {
         <Images images={images} />
         <Options sizes={sizes} colors={colors} />
         <Info price={price} name={name} />
+        <AddToCart slug={slug} />
       </Container>
     </Layout>
   )
