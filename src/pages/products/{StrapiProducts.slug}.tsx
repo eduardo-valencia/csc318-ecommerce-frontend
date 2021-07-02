@@ -5,6 +5,7 @@ export const query = graphql`
     strapiProducts(id: { eq: $id }) {
       name
       description
+      price
       thumbnail {
         alternativeText
         localFile {

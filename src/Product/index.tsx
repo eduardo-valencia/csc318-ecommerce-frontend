@@ -12,6 +12,7 @@ import Nav from './Nav'
 import { FullProduct } from '../api/types/Product'
 import Images from './Images'
 import Options from './Options'
+import Info from './Info'
 
 const styles = () => {
   return createStyles({})
@@ -26,7 +27,7 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 const ProductPage = ({ classes, data: { strapiProducts: product } }: Props) => {
-  const { name, images, sizes, colors } = product
+  const { name, images, sizes, colors, price } = product
   return (
     <Layout nav={<Nav name={name} />}>
       <Helmet>
@@ -35,6 +36,7 @@ const ProductPage = ({ classes, data: { strapiProducts: product } }: Props) => {
       <Container>
         <Images images={images} />
         <Options sizes={sizes} colors={colors} />
+        <Info price={price} name={name} />
       </Container>
     </Layout>
   )
