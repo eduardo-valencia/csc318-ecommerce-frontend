@@ -21,6 +21,14 @@ export const query = graphql`
           }
         }
       }
+      sizes {
+        name
+        id
+      }
+      colors {
+        name
+        id
+      }
     }
   }
 `

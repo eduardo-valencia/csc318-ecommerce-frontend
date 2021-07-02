@@ -9,15 +9,16 @@ import { Helmet } from 'react-helmet'
 
 import Layout from '../components/Layout'
 import Nav from './Nav'
-import Product from '../api/types/Product'
+import { FullProduct } from '../api/types/Product'
 import Images from './Images'
+import Options from './Options'
 
 const styles = () => {
   return createStyles({})
 }
 
 interface Data {
-  strapiProducts: Product
+  strapiProducts: FullProduct
 }
 
 interface Props extends WithStyles<typeof styles> {
@@ -25,7 +26,7 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 const ProductPage = ({ classes, data: { strapiProducts: product } }: Props) => {
-  const { name, images } = product
+  const { name, images, sizes, colors } = product
   return (
     <Layout nav={<Nav name={name} />}>
       <Helmet>
@@ -33,7 +34,7 @@ const ProductPage = ({ classes, data: { strapiProducts: product } }: Props) => {
       </Helmet>
       <Container>
         <Images images={images} />
-        <h1>Hello</h1>
+        <Options sizes={sizes} colors={colors} />
       </Container>
     </Layout>
   )
