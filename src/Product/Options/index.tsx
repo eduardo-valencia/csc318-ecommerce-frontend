@@ -23,8 +23,8 @@ interface Props extends WithStyles<typeof styles> {
 const Options = ({ classes, colors, sizes }: Props) => {
   return (
     <div className={classes.root}>
-      <Size sizes={sizes} />
-      <Color colors={colors} />
+      {!!sizes.length && <Size sizes={sizes} />}
+      {!!colors.length && <Color colors={colors} />}
     </div>
   )
 }

@@ -15,26 +15,38 @@ import ArrowIcon from './ArrowIcon'
 
 const styles = () => {
   const marginX: string = '1.3125rem'
-  const paddingY: string = '1.3125rem'
+  const paddingY: string = '0.9375rem'
   const paddingX: string = '1.125rem'
+
+  const paddingXStyles = {
+    paddingLeft: paddingX,
+    paddingRight: paddingX,
+  }
+
+  const labelTransformation: string = '0.75rem'
+
   return createStyles({
     root: {
       flexBasis: `calc(50% - ${marginX} / 2)`,
     },
     select: {
+      ...paddingXStyles,
       borderRadius: '1.25rem',
       backgroundColor: '#ECEDED',
       boxShadow: '#00000029 0 0.125rem 0.375rem',
       fontSize: '1rem',
-      paddingLeft: paddingX,
-      paddingRight: paddingX,
+      lineHeight: '1.3125rem',
     },
     input: {
       paddingTop: paddingY,
       paddingBottom: paddingY,
+      paddingLeft: 0,
     },
     label: {
       color: 'black',
+    },
+    labelShrink: {
+      transform: `translate(${paddingX}, 0.3125rem) scale(0.75) !important`,
     },
   })
 }
@@ -55,14 +67,16 @@ const OptionItem = ({ classes, options, label, ...other }: Props) => {
 
   return (
     <FormControl className={classes.root} variant='filled'>
-      <InputLabel id={label} className={classes.label}>
+      <InputLabel
+        id={label}
+        classes={{ root: classes.label, shrink: classes.labelShrink }}
+      >
         {label}
       </InputLabel>
       <Select
         labelId={label}
         className={classes.select}
         classes={{ root: classes.input }}
-        variant='filled'
         fullWidth
         disableUnderline
         IconComponent={ArrowIcon}
