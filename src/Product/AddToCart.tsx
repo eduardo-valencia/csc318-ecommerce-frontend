@@ -14,6 +14,7 @@ const styles = () => {
       fontSize: '1rem',
       fontWeight: 'bold',
       lineHeight: '1.3125rem',
+      marginBottom: '2rem',
     },
   })
 }

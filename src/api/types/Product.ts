@@ -15,6 +15,7 @@ interface Product<ProductCategory = Category> {
 export interface FullProduct extends Product {
   sizes: Size[]
   colors: Color[]
+  description: string
 }
 
 export default Product
