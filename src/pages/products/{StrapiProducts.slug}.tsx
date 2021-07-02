@@ -13,6 +13,14 @@ export const query = graphql`
           }
         }
       }
+      images {
+        alternativeText
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
     }
   }
 `

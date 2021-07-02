@@ -1,11 +1,16 @@
 import React from 'react'
-import { withStyles, WithStyles, createStyles } from '@material-ui/core'
-import { graphql } from 'gatsby'
+import {
+  withStyles,
+  WithStyles,
+  createStyles,
+  Container,
+} from '@material-ui/core'
 import { Helmet } from 'react-helmet'
 
 import Layout from '../components/Layout'
 import Nav from './Nav'
 import Product from '../api/types/Product'
+import Images from './Images'
 
 const styles = () => {
   return createStyles({})
@@ -20,31 +25,18 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 const ProductPage = ({ classes, data: { strapiProducts: product } }: Props) => {
+  const { name, images } = product
   return (
-    <Layout nav={<Nav name={product.name} />}>
+    <Layout nav={<Nav name={name} />}>
       <Helmet>
-        <title>{product.name}</title>
+        <title>{name}</title>
       </Helmet>
-      <h1>Hello</h1>
+      <Container>
+        <Images images={images} />
+        <h1>Hello</h1>
+      </Container>
     </Layout>
   )
 }
-
-export const query = graphql`
-  query ($id: String) {
-    strapiProducts(id: { eq: $id }) {
-      name
-      description
-      thumbnail {
-        alternativeText
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-      }
-    }
-  }
-`
 
 export default withStyles(styles)(ProductPage)

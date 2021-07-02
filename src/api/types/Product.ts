@@ -7,6 +7,7 @@ interface Product<ProductCategory = Category> {
   thumbnail: Thumbnail
   category: ProductCategory
   price?: number
+  images?: Thumbnail[]
 }
 
 export default Product
