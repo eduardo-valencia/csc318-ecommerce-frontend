@@ -25,7 +25,11 @@ const styles = () => {
 interface Props extends WithStyles<typeof styles> {}
 
 const Cart = ({ classes }: Props) => {
-  const { cart } = useContext(CartContext)!
+  const value = useContext(CartContext)
+
+  if (!value) return null
+
+  const { cart } = value
 
   const renderProductsAndCheckout = () => {
     if (cart.length) {
