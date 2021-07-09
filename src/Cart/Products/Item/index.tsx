@@ -14,6 +14,7 @@ import { getItemFinder } from '../../../utils/find'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { formatPrice } from '../../../utils/price'
 import Amount from './Amount'
+import RemoveButton from './RemoveButton'
 
 const styles = () => {
   return createStyles({
@@ -28,15 +29,18 @@ const styles = () => {
         marginTop: '0.625rem',
       },
     },
-    body: {},
+    body: {
+      flexGrow: 1,
+    },
     title: {
       fontSize: '1.125rem',
       marginBottom: '0.4375rem',
     },
-    bottom: {
+    priceAndAmount: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
+      marginBottom: '0.5rem',
     },
     price: {
       color: '#24C277',
@@ -50,6 +54,10 @@ const styles = () => {
     },
     link: {
       textDecoration: 'none',
+    },
+    bottom: {
+      display: 'flex',
+      justifyContent: 'flex-end',
     },
   })
 }
@@ -106,9 +114,12 @@ const Item = ({ classes, quantity, slug }: Props) => {
             {name}
           </Typography>
         </Link>
-        <div className={classes.bottom}>
+        <div className={classes.priceAndAmount}>
           <Typography className={classes.price}>{formattedPrice}</Typography>
           <Amount quantity={quantity} />
+        </div>
+        <div className={classes.bottom}>
+          <RemoveButton slug={slug} />
         </div>
       </div>
     </li>
