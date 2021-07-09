@@ -25,10 +25,11 @@ const styles = () => {
 interface Props extends WithStyles<typeof styles> {}
 
 const Checkout = ({ classes }: Props) => {
-  const { cart } = useContext(CartContext)!
+  const { cart, clearCart } = useContext(CartContext)!
 
   const handleToken = async (token: Token): Promise<void> => {
     await createOrder({ name: token.email, token, products: cart })
+    clearCart()
   }
 
   return (
