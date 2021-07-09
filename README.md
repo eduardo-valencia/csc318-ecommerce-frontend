@@ -1,8 +1,9 @@
 ## Environment Variables
 
-You must create a `.env` file in the front-end's root folder. If you do not add this file, the application may crash. The `.env` file requires the following environment variables:
+You must create a `.env.development` file in the front-end's root folder. If you do not add this file, the application may crash. The `.env.development` file requires the following environment variables:
 
-- `STRAPI_URL`: the URL to the Strapi CMS
+- `GATSBY_APP_STRAPI_URL`: the URL to the Strapi CMS
+- `GATSBY_STRIPE_KEY`: the publishable Stripe key from https://stripe.com/
 
 ### Example
 

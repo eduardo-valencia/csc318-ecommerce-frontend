@@ -26,7 +26,11 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 const AddToCart = ({ classes, slug, openCartNotification }: Props) => {
-  const { addToCart } = useContext(CartContext)!
+  const value = useContext(CartContext)
+
+  if (!value) return null
+
+  const { addToCart } = value
 
   const handleClick = (): void => {
     addToCart(slug)
