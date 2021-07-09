@@ -44,7 +44,11 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 const QuantityButtons = ({ classes, slug }: Props) => {
-  const { findItem } = useContext(CartContext)!
+  const value = useContext(CartContext)
+
+  if (!value) return null
+
+  const { findItem } = value
 
   const cartItem = findItem(slug)
   const quantity: number = cartItem ? cartItem.quantity : 0
