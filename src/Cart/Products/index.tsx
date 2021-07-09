@@ -19,7 +19,7 @@ const Products = ({ classes }: Props) => {
   const { cart } = useContext(CartContext)!
 
   const renderItem = (item: CartItem): JSX.Element => {
-    return <Item {...item} slug={item.slug} />
+    return <Item {...item} key={item.slug} />
   }
 
   const renderedItems: JSX.Element[] = cart.map(renderItem)

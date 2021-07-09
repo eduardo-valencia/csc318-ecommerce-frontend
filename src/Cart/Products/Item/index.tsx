@@ -62,6 +62,7 @@ const Item = ({ classes, quantity, slug }: Props) => {
         nodes {
           name
           price
+          slug
           thumbnail {
             alternativeText
             localFile {
