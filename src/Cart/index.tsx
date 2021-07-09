@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout'
 import Nav from './Nav'
 import Products from './Products'
+import Checkout from './Checkout'
 
 const styles = () => {
   return createStyles({
@@ -29,6 +30,7 @@ const Cart = ({ classes }: Props) => {
           <title>Cart</title>
         </Helmet>
         <Products />
+        <Checkout />
       </Container>
     </Layout>
   )
