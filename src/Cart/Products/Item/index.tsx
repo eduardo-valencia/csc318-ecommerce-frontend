@@ -23,6 +23,7 @@ const styles = () => {
       borderRadius: '1rem',
       padding: '0.375rem 0.5rem',
       display: 'flex',
+      alignItems: 'center',
       '& + &': {
         marginTop: '0.625rem',
       },
@@ -40,10 +41,12 @@ const styles = () => {
     price: {
       color: '#24C277',
       fontSize: '1.125rem',
+      marginRight: '2.25rem',
     },
     thumbnail: {
       width: '5.3125rem',
       borderRadius: '1rem',
+      marginRight: '1rem',
     },
     link: {
       textDecoration: 'none',
