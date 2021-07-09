@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 
 import Layout from '../components/Layout'
 import Nav from './Nav'
+import Products from './Products'
 
 const styles = () => {
   return createStyles({})
@@ -17,6 +18,7 @@ const Cart = ({ classes }: Props) => {
       <Helmet>
         <title>Cart</title>
       </Helmet>
+      <Products />
     </Layout>
   )
 }
