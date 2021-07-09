@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, withStyles, WithStyles, createStyles } from '@material-ui/core'
+import StripeCheckout, { Token } from 'react-stripe-checkout'
+
 import { bottomNavHeight } from '../constants/dimensions'
+import { createOrder } from '../api/ orders'
+import { CartContext } from '../contexts/CartContext'
 
 const styles = () => {
   return createStyles({
@@ -21,10 +25,21 @@ const styles = () => {
 interface Props extends WithStyles<typeof styles> {}
 
 const Checkout = ({ classes }: Props) => {
+  const { cart } = useContext(CartContext)!
+
+  const handleToken = async (token: Token): Promise<void> => {
+    await createOrder({ name: token.email, token, products: cart })
+  }
+
   return (
-    <Button variant='contained' classes={classes} fullWidth>
-      Checkout
-    </Button>
+    <StripeCheckout
+      token={handleToken}
+      stripeKey={process.env.GATSBY_STRIPE_KEY}
+    >
+      <Button variant='contained' classes={classes} fullWidth>
+        Checkout
+      </Button>
+    </StripeCheckout>
   )
 }
 
