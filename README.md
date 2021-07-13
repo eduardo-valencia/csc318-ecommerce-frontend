@@ -7,9 +7,7 @@ You must create a `.env.development` file in the front-end's root folder. If you
 
 ### Example
 
-```
-STRAPI_URL=http://localhost:1337
-```
+If you want to test the application, please copy the text from the `.env.example` file and paste it into a `.env.development` file. Then, start your application.
 
 ## Commands
 
