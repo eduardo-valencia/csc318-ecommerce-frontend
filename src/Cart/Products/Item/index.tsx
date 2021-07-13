@@ -5,12 +5,12 @@ import {
   createStyles,
   Typography,
 } from '@material-ui/core'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { Link } from 'gatsby'
 
 import { CartItem } from '../../../contexts/CartContext'
 import { getProductLink } from '../../../utils/links'
 import Product from '../../../api/types/Product'
-import { getItemFinder } from '../../../utils/find'
+import { findProductBySlug } from '../../../utils/find'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { formatPrice } from '../../../utils/price'
 import Amount from './Amount'
@@ -62,32 +62,12 @@ const styles = () => {
   })
 }
 
-interface Props extends WithStyles<typeof styles>, CartItem {}
+interface Props extends WithStyles<typeof styles>, CartItem {
+  products: Product[]
+}
 
-const Item = ({ classes, quantity, slug }: Props) => {
-  const {
-    allStrapiProducts: { nodes: products },
-  } = useStaticQuery(graphql`
-    {
-      allStrapiProducts {
-        nodes {
-          name
-          price
-          slug
-          thumbnail {
-            alternativeText
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
-
-  const product: Product | undefined = getItemFinder<Product>(products)(slug)
+const Item = ({ classes, quantity, slug, products }: Props) => {
+  const product: Product | undefined = findProductBySlug(products)(slug)
 
   if (!product) return null
 

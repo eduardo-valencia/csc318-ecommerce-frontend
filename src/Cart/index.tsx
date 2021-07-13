@@ -13,6 +13,8 @@ import Nav from './Nav'
 import Products from './Products'
 import Checkout from './Checkout'
 import { CartContext } from '../contexts/CartContext'
+import { useStaticQuery, graphql } from 'gatsby'
+import Total from './Total'
 
 const styles = () => {
   return createStyles({
@@ -31,11 +33,34 @@ const Cart = ({ classes }: Props) => {
 
   const { cart } = value
 
+  const {
+    allStrapiProducts: { nodes: products },
+  } = useStaticQuery(graphql`
+    {
+      allStrapiProducts {
+        nodes {
+          name
+          price
+          slug
+          thumbnail {
+            alternativeText
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
   const renderProductsAndCheckout = () => {
     if (cart.length) {
       return (
         <>
-          <Products />
+          <Products products={products} />
+          <Total products={products} />
           <Checkout />
         </>
       )

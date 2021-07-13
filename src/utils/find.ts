@@ -1,4 +1,5 @@
 import ItemWithSlug from '../api/types/ItemWithSlug'
+import Product from '../api/types/Product'
 
 export const getWhetherItemHasSlug =
   <Item extends ItemWithSlug>(slug: string) =>
@@ -17,3 +18,6 @@ export const getItemFinder =
   <Item extends ItemWithSlug>(items: Item[]) =>
   (slug: string) =>
     findItemBySlug<Item>(items, slug)
+
+export const findProductBySlug = (products: Product[]) =>
+  getItemFinder<Product>(products)
